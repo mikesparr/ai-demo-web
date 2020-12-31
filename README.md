@@ -38,10 +38,15 @@ cd ai-demo-web
 cat > .env.local << EOF
 NEXT_PUBLIC_API_URL=<YOUR-API-URL>
 NEXT_PUBLIC_API_KEY=<YOUR-API-KEY> # if applicable and using gateway + auth (recommended)
+EOF
 
 # run in development mode (see package.json for other scripts)
 npm install
 npm run dev
+
+# run in production mode
+npm run build
+npm start
 ```
 
 ## Run in Docker
