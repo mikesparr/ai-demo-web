@@ -1,5 +1,4 @@
-import { AddIcon } from "@chakra-ui/icons"
-import { Skeleton, Button } from "@chakra-ui/react"
+import { Skeleton } from "@chakra-ui/react"
 import { StatGroup, Stat, StatLabel, StatHelpText, StatNumber } from '@chakra-ui/react'
 import { Doughnut } from 'react-chartjs-2';
 
@@ -88,12 +87,10 @@ const BatchStatsBar = (props) => {
         />
       </Stat>
       
-      {props && props.actionButton &&
+      {props && props.children &&
         <Stat>
           <StatLabel>&nbsp;</StatLabel>
-          <Button leftIcon={<AddIcon />} colorScheme="blue" ml={20}>
-            New Batch
-          </Button>
+          { props.children }
         </Stat>
       }
 

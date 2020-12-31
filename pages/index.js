@@ -1,27 +1,50 @@
 import getConfig from 'next/config'
-import { SimpleGrid, Flex, Box } from '@chakra-ui/react'
+import { SimpleGrid, Flex, Box, useToast } from '@chakra-ui/react'
 import Layout from "../components/Layout"
 import Feature from "../components/Feature"
 import JobsChart from "../components/JobsChart"
 import BatchStatsBar from "../components/BatchStatsBar"
+import NewBatchPopover from "../components/NewBatchPopover"
+
+import { newBatch, newRequest, submitBatch } from "../lib/batch"
 
 import useSWR from 'swr'
 
 const { publicRuntimeConfig } = getConfig()
-const apiUrl = publicRuntimeConfig.apiUrl
+const predictUrl = publicRuntimeConfig.predictUrl
+const ingestUrl = publicRuntimeConfig.ingestUrl
 const fetcher = url => fetch(url).then(res => res.json());
 
 const Home = (props) => {
 
   // fetch remote data
-  const { data: jobs, jobsError } = useSWR(apiUrl + '/jobs', fetcher, props.data.jobs);
-  const { data: batches, batchError } = useSWR(apiUrl + '/batches', fetcher, props.data.batches);
+  const { data: jobs, jobsError } = useSWR(predictUrl + '/jobs', fetcher, props.data.jobs);
+  const { data: batches, batchError } = useSWR(predictUrl + '/batches', fetcher, props.data.batches);
   const error = jobsError || batchError;
 
-  // handler
-  const handleNewBatch = (...args) => {
-    alert(...args)
+  // new batch
+  let batchSize = 5 // default
+  const toast = useToast()
+
+  const handleBatchSubmit = async (size) => {
+    console.log("Submitting batch size", size)
+    const recs = newBatch(size)
+    const req = newRequest(recs)
+
+    console.log({req})
+    const resp = await submitBatch(ingestUrl, req)
+    console.log({resp})
+
+    toast({
+      position: "top",
+      title: "Batch submitted.",
+      description: "Your batch was submitted for prediction.",
+      status: "success",
+      duration: 5000,
+      isClosable: true,
+    })
   }
+
 
   return (
     <Layout page="home" error={error}>
@@ -38,7 +61,9 @@ const Home = (props) => {
           width="100%"
           p={3}
         >
-          <BatchStatsBar data={batches} actionButton={true} />
+          <BatchStatsBar data={batches}>{<NewBatchPopover 
+            submitHandler={ handleBatchSubmit } 
+          />}</BatchStatsBar>
         </Box>
       </Flex>
 
@@ -61,9 +86,9 @@ const Home = (props) => {
 // preload data server side, then useSWR for client-side refreshing
 export async function getServerSideProps() {
   // fetch data
-  const batchRes = await fetch(apiUrl + '/batches')
+  const batchRes = await fetch(predictUrl + '/batches')
   const batchData = await batchRes.json()
-  const jobsRes = await fetch(apiUrl + '/jobs')
+  const jobsRes = await fetch(predictUrl + '/jobs')
   const jobsData = await jobsRes.json()
 
   // pass data

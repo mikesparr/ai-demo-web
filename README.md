@@ -38,8 +38,10 @@ cd ai-demo-web
 cat > .env.local << EOF
 PROJECT_ID=$(gcloud config get-value project)
 GCP_REGION="us-central1"
-NEXT_PUBLIC_API_URL=<YOUR-API-URL>
-NEXT_PUBLIC_API_KEY=<YOUR-API-KEY> # if applicable and using gateway + auth (recommended)
+NEXT_PUBLIC_PREDICT_URL=<YOUR-PREDICT-URL>
+NEXT_PUBLIC_PREDICT_KEY=<YOUR-PREDICT-KEY> # if applicable and using gateway + auth (recommended)
+NEXT_PUBLIC_INGEST_URL=<YOUR-INGEST-URL>
+NEXT_PUBLIC_INGEST_KEY=<YOUR-INGEST-KEY> # if applicable and using gateway + auth (recommended)
 EOF
 
 # run in development mode (see package.json for other scripts)
@@ -57,7 +59,12 @@ npm start
 docker image -t ai-demo-web .
 
 # run image (passing in API url and key)
-docker run --name ai-demo-web -e NEXT_PUBLIC_API_URL=<YOUR-API-URL> -e NEXT_PUBLIC_API_KEY=<YOUR-API-KEY> -p 3000:3000 ai-demo-web
+docker run --name ai-demo-web \
+    -e NEXT_PUBLIC_PREDICT_URL=<YOUR-PREDICT-URL> \
+    -e NEXT_PUBLIC_PREDICT_KEY=<YOUR-PREDICT-KEY> \
+    -e NEXT_PUBLIC_INGEST_URL=<YOUR-INGEST-URL> \
+    -e NEXT_PUBLIC_INGEST_KEY=<YOUR-INGEST-KEY> \
+    -p 3000:3000 ai-demo-web
 ```
 
 ## Deploy to Cloud Run
@@ -74,7 +81,7 @@ gcloud run deploy ai-demo-web \
     --allow-unauthenticated \
     --platform managed \
     --port 3000 \
-    --update-env-vars NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL,NEXT_PUBLIC_API_KEY=$NEXT_PUBLIC_API_KEY
+    --update-env-vars NEXT_PUBLIC_PREDICT_URL=$NEXT_PUBLIC_PREDICT_URL,NEXT_PUBLIC_PREDICT_KEY=$NEXT_PUBLIC_PREDICT_KEY,NEXT_PUBLIC_INGEST_URL=$NEXT_PUBLIC_INGEST_URL,NEXT_PUBLIC_INGEST_KEY=$NEXT_PUBLIC_INGEST_KEY
 
 # print out the URL to visit in browser
 export WEB_URL=$(gcloud run services describe ai-demo-web --format="value(status.url)" --platform managed --region $GCP_REGION)

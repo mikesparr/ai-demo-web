@@ -8,7 +8,7 @@ import BatchesTable from "../components/BatchTable"
 import useSWR from 'swr'
 
 const { publicRuntimeConfig } = getConfig()
-const apiUrl = publicRuntimeConfig.apiUrl
+const apiUrl = publicRuntimeConfig.predictUrl
 const fetcher = url => fetch(url).then(res => res.json());
 
 const Review = (props) => {

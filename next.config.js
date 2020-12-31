@@ -4,7 +4,9 @@ module.exports = {
   },
   publicRuntimeConfig: {
     // Will be available on both server and client
-    apiUrl: process.env.NEXT_PUBLIC_API_URL,
-    apiKey: process.env.NEXT_PUBLIC_API_KEY
+    predictUrl: process.env.NEXT_PUBLIC_PREDICT_URL,
+    ingestUrl: process.env.NEXT_PUBLIC_INGEST_URL,
+    predictKey: process.env.NEXT_PUBLIC_PREDICT_KEY,
+    ingestKey: process.env.NEXT_PUBLIC_INGEST_KEY,
   },
 }
