@@ -20,6 +20,8 @@ RUN npm run build
 # Production image, copy all the files and run next
 FROM node:lts-alpine AS runner
 
+EXPOSE 3000
+
 ARG X_TAG
 WORKDIR /opt/app
 ENV NODE_ENV=production

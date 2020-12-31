@@ -36,6 +36,8 @@ cd ai-demo-web
 ```bash
 # set env vars with API url
 cat > .env.local << EOF
+PROJECT_ID=$(gcloud config get-value project)
+GCP_REGION="us-central1"
 NEXT_PUBLIC_API_URL=<YOUR-API-URL>
 NEXT_PUBLIC_API_KEY=<YOUR-API-KEY> # if applicable and using gateway + auth (recommended)
 EOF
@@ -56,6 +58,27 @@ docker image -t ai-demo-web .
 
 # run image (passing in API url and key)
 docker run --name ai-demo-web -e NEXT_PUBLIC_API_URL=<YOUR-API-URL> -e NEXT_PUBLIC_API_KEY=<YOUR-API-KEY> -p 3000:3000 ai-demo-web
+```
+
+## Deploy to Cloud Run
+```bash
+source .env.local # get env vars
+
+# build the api image
+gcloud builds submit --tag gcr.io/${PROJECT_ID}/ai-demo-web
+
+# deploy the api to cloud run
+gcloud run deploy ai-demo-web \
+    --image gcr.io/${PROJECT_ID}/ai-demo-web \
+    --region $GCP_REGION \
+    --allow-unauthenticated \
+    --platform managed \
+    --port 3000 \
+    --update-env-vars NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL,NEXT_PUBLIC_API_KEY=$NEXT_PUBLIC_API_KEY
+
+# print out the URL to visit in browser
+export WEB_URL=$(gcloud run services describe ai-demo-web --format="value(status.url)" --platform managed --region $GCP_REGION)
+echo "Visit ${WEB_URL}"
 ```
 
 # Usage
