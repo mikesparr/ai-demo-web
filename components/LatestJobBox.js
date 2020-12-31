@@ -32,8 +32,6 @@ const LatestJobBox = (props) => {
   }
   const accuracyDelta = latestJob.accuracy - prevJob.accuracy
 
-  console.log({data})
-
   return (
     <Box 
       shadow="md" 

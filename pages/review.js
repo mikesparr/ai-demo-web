@@ -1,5 +1,11 @@
 import getConfig from 'next/config'
-import { useColorModeValue, Heading, Flex, Box } from '@chakra-ui/react'
+import { 
+  Heading, 
+  Flex, 
+  Box, 
+  useColorModeValue, 
+  useToast 
+} from '@chakra-ui/react'
 import Layout from "../components/Layout"
 import Feature from "../components/Feature"
 import BatchStatsBar from "../components/BatchStatsBar"
@@ -15,6 +21,28 @@ const Review = (props) => {
   
   // fetch remote data
   const { data: batches, error } = useSWR(apiUrl + '/batches', fetcher, props.data);
+
+  // new corrections
+  const toast = useToast()
+
+  const handleReviewSubmit = async (batch) => {
+    console.log("Submitting corrections for batch", batch.batch_id)
+    //const recs = newBatch(size)
+    //const req = newRequest(recs)
+
+    //console.log({req})
+    //const resp = await submitBatch(ingestUrl, req)
+    //console.log({resp})
+
+    toast({
+      position: "top",
+      title: "Corrections submitted.",
+      description: "Your corrections were submitted for retraining.",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+    })
+  }
 
   return (
     <Layout page="review" error={error}>
@@ -59,7 +87,7 @@ const Review = (props) => {
         width="100%"
         p="1.0rem"
       >
-        <BatchesTable data={batches} />
+        <BatchesTable data={batches} submitHandler={ handleReviewSubmit } />
       </Flex>
 
     </Layout>

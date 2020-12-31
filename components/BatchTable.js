@@ -1,4 +1,14 @@
-import { Skeleton, Table, TableCaption, Thead, Tbody, Th, Tr, Td } from "@chakra-ui/react"
+import { 
+  Skeleton, 
+  Table, 
+  TableCaption, 
+  Thead, 
+  Tbody, 
+  Th, 
+  Tr, 
+  Td
+} from "@chakra-ui/react"
+import BatchReviewDrawer from "./BatchReviewDrawer"
 
 const BatchTable = (props) => {
 
@@ -33,7 +43,9 @@ const BatchTable = (props) => {
             <Td isNumeric>{predictions.length}</Td>
             <Td isNumeric>{batchRealCount}</Td>
             <Td isNumeric>{predictions.length - batchRealCount}</Td>
-            <Td isNumeric></Td>
+            <Td isNumeric p={1}>
+              <BatchReviewDrawer submitHandler={props.submitHandler} />
+            </Td>
           </Tr>
         )
       }
@@ -50,7 +62,7 @@ const BatchTable = (props) => {
             <Th isNumeric>Predictions</Th>
             <Th isNumeric>Real</Th>
             <Th isNumeric>Fake</Th>
-            <Th isNumeric>Review</Th>
+            <Th isNumeric>&nbsp;</Th>
           </Tr>
         </Thead>
         <Tbody>
