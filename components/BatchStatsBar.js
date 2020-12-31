@@ -34,7 +34,7 @@ const BatchStatsBar = (props) => {
       backgroundColor: ["yellowgreen", "#F36F53"],
       borderColor: 'gray',
       borderWidth: 1,
-      data: [63, 26]
+      data: [realCount, predictionCount - realCount]
     }],
 
     // These labels appear in the legend and in the tooltips when hovering different arcs
