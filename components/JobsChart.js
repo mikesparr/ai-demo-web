@@ -12,14 +12,13 @@ const JobsChart = (props) => {
   let accuracy = 0.0;
   let labels = [];
   let values = [];
-  let tableRows = [];
 
   if (data && data.jobs) {
     jobCount = data.jobs.length;
     data.jobs.map((job, i) => {
       accuracy = accuracy == 0.0 ? job.accuracy : accuracy;
       recordCount = recordCount == 0 ? job.records : recordCount;
-      labels.push(i + 1)
+      labels.push(`Job: ${job.job_id}`)
       values.push(job.accuracy * 100)
     });
   }
@@ -41,7 +40,7 @@ const JobsChart = (props) => {
 
   return (
     <Skeleton isLoaded={data}>
-      <Line
+      <Bar
         data={chartData}
         width={props.width}
         height={props.height}

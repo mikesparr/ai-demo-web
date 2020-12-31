@@ -1,5 +1,12 @@
-import { Skeleton } from "@chakra-ui/react"
-import { StatGroup, Stat, StatLabel, StatHelpText, StatNumber, StatArrow } from '@chakra-ui/react'
+import { 
+  StatGroup, 
+  Stat, 
+  StatLabel, 
+  StatHelpText, 
+  StatNumber, 
+  StatArrow,
+  Skeleton
+} from '@chakra-ui/react'
 import { Line } from 'react-chartjs-2';
 
 // pass an error handler function so child can send errors back to parent
@@ -24,6 +31,14 @@ const JobsStatsBar = (props) => {
       values.push(job.accuracy * 100)
     });
   }
+
+  const latestJob = data && data.jobs && data.jobs.length > 0 ? data.jobs[0] : {
+    accuracy: 0.0
+  }
+  const prevJob = data && data.jobs && data.jobs.length > 1 ? data.jobs[1] : {
+    accuracy: 0.0
+  }
+  const accuracyDelta = latestJob.accuracy - prevJob.accuracy
 
   const chartData = {
     labels,
@@ -56,7 +71,7 @@ const JobsStatsBar = (props) => {
           <StatNumber>{ new Intl.NumberFormat({ style: 'percent' }).format(accuracy * 100) }</StatNumber>
         <StatHelpText>
           <StatArrow type="increase" />
-          4.762
+          { new Intl.NumberFormat({ style: 'percent' }).format(accuracyDelta * 100) }
         </StatHelpText>
       </Stat>
       <Stat>

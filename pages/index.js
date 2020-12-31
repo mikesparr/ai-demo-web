@@ -1,8 +1,15 @@
 import getConfig from 'next/config'
-import { SimpleGrid, Flex, Box, useToast } from '@chakra-ui/react'
+import { 
+  SimpleGrid, 
+  Flex, 
+  Box, 
+  useToast,
+  useColorModeValue,
+} from '@chakra-ui/react'
 import Layout from "../components/Layout"
 import Feature from "../components/Feature"
 import JobsChart from "../components/JobsChart"
+import LatestJobBox from "../components/LatestJobBox"
 import BatchStatsBar from "../components/BatchStatsBar"
 import NewBatchPopover from "../components/NewBatchPopover"
 
@@ -23,7 +30,6 @@ const Home = (props) => {
   const error = jobsError || batchError;
 
   // new batch
-  let batchSize = 5 // default
   const toast = useToast()
 
   const handleBatchSubmit = async (size) => {
@@ -71,13 +77,22 @@ const Home = (props) => {
           <Box shadow="md" border="1px gray" borderRadius={10} p={3}>
             <JobsChart width={700} height={300} color="blue" data={jobs} />
           </Box>
+          
+          <LatestJobBox data={jobs} />
+      </SimpleGrid> 
 
+      <Flex
+        p="1.0rem"
+        width="100%"
+      >
           <Feature
             title="Welcome"
-            desc="This site is designed to demonstrate an automatic feedback loop for machine learning. Create New Batches, then correct them in the Review page and witness model accuracy increase as more training data is available."
+            desc="This site is designed to demonstrate an automatic feedback loop for machine learning. Create New Batches, then correct them in the Review page and witness model accuracy change as more training data is available."
             borderRadius={10}
+            width="100%"
+            backgroundColor={useColorModeValue("orange.50", "blue.900")}
           />
-      </SimpleGrid> 
+      </Flex>
 
     </Layout>
   )

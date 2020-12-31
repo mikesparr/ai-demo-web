@@ -93,7 +93,7 @@ Visit http://localhost:3000 to interact with the app
 - toggle the Dark Mode icon in nav bar to switch viewing modes (optional)
 
 # Other considerations
-- Finish functionality (new batch and corrections)
+- Finish functionality (corrections)
 - Automated testing
 - Pagination
 - Authentication
