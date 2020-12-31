@@ -3,7 +3,8 @@ This is a demo app illustrating how to build a custom machine learning pipeline.
 this web interface built using NextJS/React and ChartsJS, plus two APIs using Golang and Cloud Run, 
 and backend processors using Python and Cloud Functions.
 
-# Demo
+# Demo (submit, review, and view jobs)
+![API Demo](./img_demo.gif)
 
 # Architecture
 ![AI demo architecture](./img_arch.png)
