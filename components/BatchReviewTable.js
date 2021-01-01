@@ -44,13 +44,15 @@ const BatchReviewTable = (props) => {
             </Td>
             <Td textAlign="center" p={1}>
               <Select
+                id={data.subjects[index]}
                 bg={prediction == actual ? 'green.200' : 'red.200'}
                 mr={3}
                 size="sm"
-                onChange={(e) => props.correctionHandler(e.target.value)}
+                onChange={(e) => props.correctionHandler(e.target.id)}
+                defaultValue={prediction}
               >
-                <option value={data.subjects[index]} selected={actual == 'real' ? 'true' : ''}>real</option>
-                <option value={data.subjects[index]} selected={actual == 'fake' ? 'true' : ''}>fake</option>
+                <option selected={actual == 'real' ? 'true' : ''}>real</option>
+                <option selected={actual == 'fake' ? 'true' : ''}>fake</option>
               </Select>
             </Td>
           </Tr>
@@ -63,7 +65,7 @@ const BatchReviewTable = (props) => {
     <>
     <Skeleton isLoaded={data}>
       <Table variant="striped" colorScheme="blue" width="100%">
-        <TableCaption>Incorrect rows will be highlighted. Correct all and "Save".</TableCaption>
+        <TableCaption>Incorrect rows will be RED. Correct as needed and "Save".</TableCaption>
         <Thead>
           <Tr>
             <Th>Subject</Th>

@@ -46,7 +46,7 @@ const Home = (props) => {
       title: "Batch submitted.",
       description: "Your batch was submitted for prediction.",
       status: "success",
-      duration: 5000,
+      duration: 2500,
       isClosable: true,
     })
   }

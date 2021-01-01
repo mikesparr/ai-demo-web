@@ -47,7 +47,7 @@ const LatestJobBox = (props) => {
       <Skeleton isLoaded={data}>
       <Flex width="100%" justify="space-between">
         <List width="100%">
-          <ListItem mb={10}>
+          <ListItem mb={5}>
             <Stat>
               <StatLabel>Accuracy (%)</StatLabel>
                 <StatNumber>{ new Intl.NumberFormat({ style: 'percent' }).format(latestJob.accuracy * 100) }</StatNumber>
@@ -61,6 +61,13 @@ const LatestJobBox = (props) => {
             <Flex justify="space-between">
               <Box fontWeight="medium">Last Job</Box>
               <Box ml={10}>{new Date(latestJob.created + 'Z').toLocaleString("en-US")}</Box>
+            </Flex>
+          </ListItem>
+          <Divider orientation="horizontal" />
+          <ListItem mb={2}>
+            <Flex justify="space-between">
+              <Box fontWeight="medium">Records</Box>
+              <Box ml={10}>{ new Intl.NumberFormat().format(latestJob.records) }</Box>
             </Flex>
           </ListItem>
           <Divider orientation="horizontal" />

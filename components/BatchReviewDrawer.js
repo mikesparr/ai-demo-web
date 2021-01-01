@@ -50,8 +50,6 @@ const BatchReviewDrawer = (props) => {
     close()
   }
 
-  
-
   return (
     <>
       <Button

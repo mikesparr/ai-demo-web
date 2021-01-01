@@ -40,7 +40,7 @@ const Review = (props) => {
       title: "Corrections submitted.",
       description: "Your corrections were submitted for retraining.",
       status: "success",
-      duration: 3000,
+      duration: 2500,
       isClosable: true,
     })
   }
