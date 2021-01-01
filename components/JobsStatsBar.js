@@ -70,7 +70,7 @@ const JobsStatsBar = (props) => {
         <StatLabel>Accuracy (%)</StatLabel>
           <StatNumber>{ new Intl.NumberFormat({ style: 'percent' }).format(accuracy * 100) }</StatNumber>
         <StatHelpText>
-          <StatArrow type="increase" />
+          <StatArrow type={accuracyDelta >= 0 ? "increase" : "descrease"} />
           { new Intl.NumberFormat({ style: 'percent' }).format(accuracyDelta * 100) }
         </StatHelpText>
       </Stat>

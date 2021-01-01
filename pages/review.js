@@ -11,6 +11,8 @@ import Feature from "../components/Feature"
 import BatchStatsBar from "../components/BatchStatsBar"
 import BatchesTable from "../components/BatchTable"
 
+import { newCorrectionRequest, submitCorrectedBatch } from "../lib/batch"
+
 import useSWR from 'swr'
 
 const { publicRuntimeConfig } = getConfig()
@@ -27,12 +29,11 @@ const Review = (props) => {
 
   const handleReviewSubmit = async (batch) => {
     console.log("Submitting corrections for batch", batch.batch_id)
-    //const recs = newBatch(size)
-    //const req = newRequest(recs)
+    const req = newCorrectionRequest(batch)
 
-    //console.log({req})
-    //const resp = await submitBatch(ingestUrl, req)
-    //console.log({resp})
+    console.log({req})
+    const resp = await submitCorrectedBatch(apiUrl, req)
+    console.log({resp})
 
     toast({
       position: "top",

@@ -44,7 +44,7 @@ const BatchTable = (props) => {
             <Td isNumeric>{batchRealCount}</Td>
             <Td isNumeric>{predictions.length - batchRealCount}</Td>
             <Td isNumeric p={1}>
-              <BatchReviewDrawer submitHandler={props.submitHandler} />
+              <BatchReviewDrawer data={batch} submitHandler={props.submitHandler} />
             </Td>
           </Tr>
         )

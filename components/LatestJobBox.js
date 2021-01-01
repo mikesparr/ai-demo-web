@@ -52,7 +52,7 @@ const LatestJobBox = (props) => {
               <StatLabel>Accuracy (%)</StatLabel>
                 <StatNumber>{ new Intl.NumberFormat({ style: 'percent' }).format(latestJob.accuracy * 100) }</StatNumber>
               <StatHelpText>
-                <StatArrow type="increase" />
+              <StatArrow type={accuracyDelta >= 0 ? "increase" : "descrease"} />
                 { new Intl.NumberFormat({ style: 'percent' }).format(accuracyDelta * 100) }
               </StatHelpText>
             </Stat>
@@ -66,21 +66,21 @@ const LatestJobBox = (props) => {
           <Divider orientation="horizontal" />
           <ListItem mb={2}>
             <Flex justify="space-between">
-              <Box fontWeight="medium">Data prep time</Box>
+              <Box fontWeight="medium">Data prep seconds</Box>
               <Box ml={10}>{ new Intl.NumberFormat().format(latestJob.data_prep_time) }</Box>
             </Flex>
           </ListItem>
           <Divider orientation="horizontal" />
           <ListItem mb={2}>
             <Flex justify="space-between">
-              <Box fontWeight="medium">Training time</Box>
+              <Box fontWeight="medium">Training seconds</Box>
               <Box ml={10}>{ new Intl.NumberFormat().format(latestJob.training_time) }</Box>
             </Flex>
           </ListItem>
           <Divider orientation="horizontal" />
           <ListItem mb={2}>
             <Flex justify="space-between">
-              <Box fontWeight="medium">Testing time</Box>
+              <Box fontWeight="medium">Testing seconds</Box>
               <Box ml={10}>{ new Intl.NumberFormat().format(latestJob.testing_time) }</Box>
             </Flex>
           </ListItem>

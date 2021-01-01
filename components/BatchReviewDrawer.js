@@ -11,6 +11,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react"
 import { ViewIcon } from "@chakra-ui/icons"
+import BatchReviewTable from "./BatchReviewTable"
 
 const BatchReviewDrawer = (props) => {
 
@@ -18,11 +19,38 @@ const BatchReviewDrawer = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = useRef()
 
-  const handleSubmit = (corrections, close) => {
-    console.log("Submitting corrections for batch", corrections.batch_id)
-    submitHandler(corrections)
+  const corrections = []
+
+  // corrections (received from review table)
+  const addToCorrections = (subjectId) => {
+    corrections.push(subjectId)
+  }
+
+  const getCorrectedBatch = (batch, corrections) => {
+    const correctedBatch = {
+      batch_id: batch.batch_id,
+      subjects: batch.subjects,
+      ratings: []
+    }
+
+    // loop through subjects and correct prediction values as necessary
+    batch.subjects.map((subject, index) => {
+      let prediction = batch.predictions[index] // default
+      if (corrections.includes(subject)) {
+        prediction = batch.predictions[index] == 'real' ? 'fake' : 'real' // opposite of orig prediction
+        console.log("Corrected subject", subject)
+      }
+      correctedBatch.ratings.push(prediction)
+    })
+    return correctedBatch
+  }
+
+  const handleSubmit = (close) => {
+    submitHandler(getCorrectedBatch(data, corrections))
     close()
   }
+
+  
 
   return (
     <>
@@ -50,14 +78,14 @@ const BatchReviewDrawer = (props) => {
             <DrawerHeader>Review batch</DrawerHeader>
 
             <DrawerBody>
-              Placeholder text
+              <BatchReviewTable data={data} correctionHandler={addToCorrections} />
             </DrawerBody>
 
             <DrawerFooter>
               <Button variant="outline" mr={3} onClick={onClose}>
                 Cancel
               </Button>
-              <Button color="blue" onClick={(data) => handleSubmit(data, onClose)}>Save</Button>
+              <Button color="blue" onClick={() => handleSubmit(onClose)}>Save</Button>
             </DrawerFooter>
           </DrawerContent>
         </DrawerOverlay>
