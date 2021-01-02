@@ -22,11 +22,11 @@ export default function Layout({ children, page, error }) {
       align="center"
     >
       <Head>
-        <title>Bank Note Demo - {page.toUpperCase()}</title>
-        <meta name="description" content="Machine learning demo app with automated retraining jobs using bank note dataset."/>
+        <title>AI Demo - {page.toUpperCase()}</title>
+        <meta name="description" content="Machine learning demo app with automated retraining jobs using AI dataset."/>
       </Head>
 
-      <Navbar width="100%" title="Bank Note Demo" page={page || "home"} />
+      <Navbar width="100%" title="AI Demo" page={page || "home"} />
 
       <Flex width={width}>
         {alert(error)}
