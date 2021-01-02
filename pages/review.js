@@ -11,7 +11,7 @@ import Feature from "../components/Feature"
 import BatchStatsBar from "../components/BatchStatsBar"
 import BatchesTable from "../components/BatchTable"
 
-import { newCorrectionRequest, submitCorrectedBatch } from "../lib/batch"
+import { submitCorrectedBatch } from "../lib/batch"
 
 import useSWR from 'swr'
 
