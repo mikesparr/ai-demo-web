@@ -18,7 +18,7 @@ const JobsChart = (props) => {
     data.jobs.map((job, i) => {
       accuracy = accuracy == 0.0 ? job.accuracy : accuracy;
       recordCount = recordCount == 0 ? job.records : recordCount;
-      labels.push(`Job: ${job.job_id}`)
+      labels.push(`Model: ${job.model_file_name}`)
       values.push(job.accuracy * 100)
     });
   }
