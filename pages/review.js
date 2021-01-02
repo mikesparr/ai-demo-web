@@ -29,10 +29,9 @@ const Review = (props) => {
 
   const handleReviewSubmit = async (batch) => {
     console.log("Submitting corrections for batch", batch.batch_id)
-    const req = newCorrectionRequest(batch)
 
-    console.log({req})
-    const resp = await submitCorrectedBatch(apiUrl, req)
+    console.log({batch})
+    const resp = await submitCorrectedBatch(apiUrl, batch)
     console.log({resp})
 
     toast({

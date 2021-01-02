@@ -35,12 +35,12 @@ const BatchReviewDrawer = (props) => {
 
     // loop through subjects and correct prediction values as necessary
     batch.subjects.map((subject, index) => {
-      let prediction = batch.predictions[index] // default
+      let isCorrect = 1 // default
       if (corrections.includes(subject)) {
-        prediction = batch.predictions[index] == 'real' ? 'fake' : 'real' // opposite of orig prediction
+        isCorrect = 0
         console.log("Corrected subject", subject)
       }
-      correctedBatch.ratings.push(prediction)
+      correctedBatch.ratings.push(isCorrect)
     })
     return correctedBatch
   }

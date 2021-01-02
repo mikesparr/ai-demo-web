@@ -51,8 +51,8 @@ const BatchReviewTable = (props) => {
                 onChange={(e) => props.correctionHandler(e.target.id)}
                 defaultValue={prediction}
               >
-                <option selected={actual == 'real' ? 'true' : ''}>real</option>
-                <option selected={actual == 'fake' ? 'true' : ''}>fake</option>
+                <option value="real">real</option>
+                <option value="fake">fake</option>
               </Select>
             </Td>
           </Tr>

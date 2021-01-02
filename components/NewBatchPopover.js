@@ -43,7 +43,12 @@ const NewBatchPopover = (props) => {
               <PopoverHeader>Submit New Batch</PopoverHeader>
               <PopoverCloseButton />
               <PopoverBody>
-                <Select placeholder="Batch size" mb={3} onChange={(event) => { options.batchSize = event.target.value; console.log("Selected", event.target.value)}}>
+                <Select 
+                  placeholder="Batch size" 
+                  mb={3} 
+                  onChange={(event) => { options.batchSize = event.target.value; console.log("Selected", event.target.value)}}
+                  defaultValue="5"
+                >
                   <option value="5">5 records</option>
                   <option value="10">10 records</option>
                   <option value="15">15 records</option>
