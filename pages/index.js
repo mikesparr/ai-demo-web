@@ -37,20 +37,43 @@ const Home = (props) => {
     const recs = newBatch(size)
     const req = newRequest(recs)
 
-    console.log({req})
-    const resp = await submitBatch(ingestUrl, req)
-    console.log({resp})
+    let status = "success"
+    const toastMessage = {
+      success: {
+        status: "success",
+        title: "Batch submitted",
+        description: "Your batch was submitted for prediction",
+        duration: 2000
+      },
+      error: {
+        status: "error",
+        title: "Request failed",
+        description: "There was an error submitting your batch",
+        duration: 3000
+      }
+    }
+
+    try {
+      console.log({req})
+      const resp = await submitBatch(ingestUrl, req)
+      console.log({resp})
+
+      if (resp && resp.message) {
+        status = "error"
+        toastMessage.error.description = resp.message
+      }
+    } catch (err) {
+      console.log({err})
+      status = "error"
+      toastMessage.error.description = err.message
+    }
 
     toast({
       position: "top",
-      title: "Batch submitted.",
-      description: "Your batch was submitted for prediction.",
-      status: "success",
-      duration: 2500,
+      ...toastMessage[status],
       isClosable: true,
     })
   }
-
 
   return (
     <Layout page="home" error={error}>
@@ -79,19 +102,19 @@ const Home = (props) => {
           </Box>
           
           <LatestJobBox data={jobs} />
-      </SimpleGrid> 
+      </SimpleGrid>
 
       <Flex
         p="1.0rem"
         width="100%"
       >
-          <Feature
-            title="Welcome"
-            desc="This site is designed to demonstrate an automatic feedback loop for machine learning. Create New Batches, then correct them in the Review page and witness model accuracy change as more training data is available."
-            borderRadius={10}
-            width="100%"
-            backgroundColor={useColorModeValue("orange.50", "blue.900")}
-          />
+        <Feature
+          title="Welcome"
+          desc="This site is designed to demonstrate an automatic feedback loop for machine learning. Create New Batches, then correct them in the Review page and witness model accuracy change as more training data is available."
+          borderRadius={10}
+          width="100%"
+          backgroundColor={useColorModeValue("orange.50", "blue.900")}
+        />
       </Flex>
 
     </Layout>

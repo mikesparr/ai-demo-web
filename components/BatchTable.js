@@ -55,7 +55,7 @@ const BatchTable = (props) => {
   return (
     <Skeleton isLoaded={data}>
       <Table variant="striped" colorScheme="blue" width="100%">
-        <TableCaption>Data will reset periodically for this demo.</TableCaption>
+        <TableCaption>Display the most recent batches (up to 100).</TableCaption>
         <Thead>
           <Tr>
             <Th>Submitted</Th>

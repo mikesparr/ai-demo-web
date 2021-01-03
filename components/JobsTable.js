@@ -20,7 +20,7 @@ const JobsTable = (props) => {
           <Td isNumeric>{new Intl.NumberFormat().format(job.data_prep_time)}</Td>
           <Td isNumeric>{new Intl.NumberFormat().format(job.training_time)}</Td>
           <Td isNumeric>{new Intl.NumberFormat().format(job.testing_time)}</Td>
-          <Td isNumeric>{new Intl.NumberFormat().format(job.accuracy * 100)}</Td>
+          <Td isNumeric>{new Intl.NumberFormat().format(job.accuracy * 100.0)}</Td>
         </Tr>
       )
     });
@@ -29,7 +29,7 @@ const JobsTable = (props) => {
   return (
     <Skeleton isLoaded={data}>
       <Table variant="striped" colorScheme="blue" width="100%">
-        <TableCaption>Data will reset periodically for this demo.</TableCaption>
+        <TableCaption>Display the most recent jobs (up to 25).</TableCaption>
         <Thead>
           <Tr>
             <Th>Completed</Th>

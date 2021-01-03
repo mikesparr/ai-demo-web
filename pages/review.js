@@ -30,16 +30,40 @@ const Review = (props) => {
   const handleReviewSubmit = async (batch) => {
     console.log("Submitting corrections for batch", batch.batch_id)
 
-    console.log({batch})
-    const resp = await submitCorrectedBatch(apiUrl, batch)
-    console.log({resp})
+    let status = "success"
+    const toastMessage = {
+      success: {
+        title: "Corrections submitted.",
+        description: "Your corrections were submitted for retraining.",
+        status: "success",
+        duration: 2000,
+      },
+      error: {
+        status: "error",
+        title: "Request failed",
+        description: "There was an error submitting your corrections.",
+        duration: 3000
+      }
+    }
+
+    try {
+      console.log({batch})
+      const resp = await submitCorrectedBatch(apiUrl, batch)
+      console.log({resp})
+
+      if (resp && resp.message) {
+        status = "error"
+        toastMessage.error.description = resp.message
+      }
+    } catch (err) {
+      console.log({err})
+      status = "error"
+      toastMessage.error.description = err.message
+    }
 
     toast({
       position: "top",
-      title: "Corrections submitted.",
-      description: "Your corrections were submitted for retraining.",
-      status: "success",
-      duration: 2500,
+      ...toastMessage[status],
       isClosable: true,
     })
   }

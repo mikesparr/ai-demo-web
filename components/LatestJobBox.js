@@ -50,7 +50,7 @@ const LatestJobBox = (props) => {
           <ListItem mb={5}>
             <Stat>
               <StatLabel>Accuracy (%)</StatLabel>
-                <StatNumber>{ new Intl.NumberFormat({ style: 'percent' }).format(latestJob.accuracy * 100) }</StatNumber>
+                <StatNumber>{ new Intl.NumberFormat({ style: 'percent' }).format(latestJob.accuracy * 100.0) }</StatNumber>
               <StatHelpText>
               <StatArrow type={accuracyDelta >= 0 ? "increase" : "descrease"} />
                 { new Intl.NumberFormat({ style: 'percent' }).format(accuracyDelta * 100) }
