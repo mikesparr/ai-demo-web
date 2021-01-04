@@ -4,7 +4,8 @@ this web interface built using NextJS/React and ChartsJS, plus two APIs using Go
 and backend processors using Python and Cloud Functions.
 
 # Demo (submit, review, and view jobs)
-Click to view a live video demo below
+## Click to view a live video demo below
+
 [![Web Demo](https://img.youtube.com/vi/WRJvUsNTdVs/0.jpg)](https://www.youtube.com/watch?v=WRJvUsNTdVs)
 
 # Architecture
