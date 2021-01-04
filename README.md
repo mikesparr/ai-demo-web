@@ -6,7 +6,7 @@ and backend processors using Python and Cloud Functions.
 # Demo (submit, review, and view jobs)
 ## Click to view a live video demo below
 
-[![Web Demo](./img_demo.gif)](https://www.youtube.com/watch?v=WRJvUsNTdVs)
+[![Web Demo](./img_demo.gif)](https://www.youtube.com/watch?v=Etf7Wl2H-mQ)
 
 # Architecture
 ![AI demo architecture](./img_arch.png)
