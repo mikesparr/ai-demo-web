@@ -18,9 +18,9 @@
    - '$_GCP_REGION'
    - '--platform'
    - 'managed'
-   - '--set-env-vars "NEXT_PUBLIC_PREDICT_URL=$_PREDICT_API_URL"'
-   - '--set-env-vars "NEXT_PUBLIC_PREDICT_KEY=$_PREDICT_API_KEY"'
-   - '--set-env-vars "NEXT_PUBLIC_INGEST_URL=$_INGEST_API_URL"'
-   - '--set-env-vars "NEXT_PUBLIC_INGEST_URL=$_INGEST_API_URL"'
+   - '--update-env-vars="NEXT_PUBLIC_PREDICT_URL=$_PREDICT_API_URL"'
+   - '--update-env-vars="NEXT_PUBLIC_PREDICT_KEY=$_PREDICT_API_KEY"'
+   - '--update-env-vars="NEXT_PUBLIC_INGEST_URL=$_INGEST_API_URL"'
+   - '--update-env-vars="NEXT_PUBLIC_INGEST_URL=$_INGEST_API_URL"'
  images:
  - 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:$COMMIT_SHA'
