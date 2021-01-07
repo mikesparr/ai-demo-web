@@ -1,5 +1,10 @@
 import getConfig from 'next/config'
-import { useColorModeValue, Heading, Flex, Box } from '@chakra-ui/react'
+import { 
+  useColorModeValue, 
+  Heading, 
+  Flex, 
+  Box 
+} from '@chakra-ui/react'
 import Layout from "../components/Layout"
 import Feature from "../components/Feature"
 import JobsStatsBar from "../components/JobsStatsBar"
