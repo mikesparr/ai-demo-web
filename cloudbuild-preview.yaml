@@ -1,0 +1,45 @@
+steps:
+# Build the container image
+- id: "build image"
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:$_PR_NUMBER-$SHORT_SHA', '.']
+# Push the container image to Container Registry
+- id: "push image"
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:$_PR_NUMBER-$SHORT_SHA']
+# Deploy container image to Cloud Run
+- id: "deploy revision with tag"
+  name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args:
+  - 'run'
+  - 'deploy'
+  - '$_SERVICE_NAME'
+  - '--image'
+  - 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:$_PR_NUMBER-$SHORT_SHA'
+  - '--region'
+  - '$_GCP_REGION'
+  - '--platform'
+  - 'managed'
+  - '--tag'
+  - 'pr-${_PR_NUMBER}'
+  - '--no-traffic'
+  - '--update-env-vars=NEXT_PUBLIC_PREDICT_URL=$_PREDICT_API_URL,NEXT_PUBLIC_PREDICT_KEY=$_PREDICT_API_KEY,NEXT_PUBLIC_INGEST_URL=$_INGEST_API_URL,NEXT_PUBLIC_INGEST_URL=$_INGEST_API_URL'
+- id: "link revision on pull request"
+  name: "gcr.io/$PROJECT_ID/deployment-previews"
+  args:
+  - 'set'
+  - '--project-id'
+  - '$PROJECT_ID'
+  - '--region'
+  - '$_GCP_REGION'
+  - '--service'
+  - '$_SERVICE_NAME'
+  - '--pull-request'
+  - '$_PR_NUMBER'
+  - '--repo-name'
+  - '$_GITHUB_REPO'
+  - '--commit-sha'
+  - '$_SHORT_SHA'
+substitutions:
+  _GITHUB_REPO: $(pull_request.pull_request.head.repo.full_name)
