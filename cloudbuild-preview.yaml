@@ -41,6 +41,6 @@ steps:
   - '--repo-name'
   - '$_GITHUB_REPO'
   - '--commit-sha'
-  - '$_SHORT_SHA'
+  - '$SHORT_SHA'
 substitutions:
   _GITHUB_REPO: $(pull_request.pull_request.head.repo.full_name)
