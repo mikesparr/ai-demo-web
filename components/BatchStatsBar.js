@@ -1,5 +1,11 @@
 import { Skeleton } from "@chakra-ui/react"
-import { StatGroup, Stat, StatLabel, StatHelpText, StatNumber } from '@chakra-ui/react'
+import { 
+  StatGroup, 
+  Stat, 
+  StatLabel, 
+  StatHelpText, 
+  StatNumber 
+} from '@chakra-ui/react'
 import { Doughnut } from 'react-chartjs-2';
 
 // pass an error handler function so child can send errors back to parent

@@ -1,5 +1,4 @@
 import { Link } from "@chakra-ui/react"
-import { gray } from "colorette"
 
 const MenuItems = ({ children, href, isSelected }) => {
     const color = isSelected ? "blue.500" : "gray.500"

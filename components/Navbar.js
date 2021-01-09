@@ -1,4 +1,4 @@
-import { Flex, Heading, Box, useColorModeValue } from "@chakra-ui/react"
+import { Flex, Heading, Box } from "@chakra-ui/react"
 import MenuItems from "./MenuItems"
 import DarkModeSwitch from './DarkModeSwitch'
 

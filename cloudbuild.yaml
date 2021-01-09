@@ -1,23 +1,40 @@
- steps:
- # Build the container image
- - name: 'gcr.io/cloud-builders/docker'
-   args: ['build', '-t', 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:$SHORT_SHA', '.']
- # Push the container image to Container Registry
- - name: 'gcr.io/cloud-builders/docker'
-   args: ['push', 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:$SHORT_SHA']
- # Deploy container image to Cloud Run
- - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-   entrypoint: gcloud
-   args:
-   - 'run'
-   - 'deploy'
-   - '$_SERVICE_NAME'
-   - '--image'
-   - 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:$SHORT_SHA'
-   - '--region'
-   - '$_GCP_REGION'
-   - '--platform'
-   - 'managed'
-   - '--update-env-vars=NEXT_PUBLIC_PREDICT_URL=$_PREDICT_API_URL,NEXT_PUBLIC_PREDICT_KEY=$_PREDICT_API_KEY,NEXT_PUBLIC_INGEST_URL=$_INGEST_API_URL,NEXT_PUBLIC_INGEST_URL=$_INGEST_API_URL'
- images:
- - 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:$SHORT_SHA'
+steps:
+# Build the container image
+- id: 'build'
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:$SHORT_SHA', '.']
+# Push the container image to Container Registry
+- id: 'push'
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:$SHORT_SHA']
+# Deploy container image to Cloud Run
+- id: 'deploy'
+  name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args:
+  - 'run'
+  - 'deploy'
+  - '$_SERVICE_NAME'
+  - '--image'
+  - 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:$SHORT_SHA'
+  - '--region'
+  - '$_GCP_REGION'
+  - '--platform'
+  - 'managed'
+  - '--update-env-vars=NEXT_PUBLIC_PREDICT_URL=$_PREDICT_API_URL,NEXT_PUBLIC_PREDICT_KEY=$_PREDICT_API_KEY,NEXT_PUBLIC_INGEST_URL=$_INGEST_API_URL,NEXT_PUBLIC_INGEST_URL=$_INGEST_API_URL'
+# Allocate traffic to this revision (can skip if want manual judgement or canary via console)
+- id: 'traffic'
+  name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args:
+  - 'run'
+  - 'services'
+  - 'update-traffic'
+  - '--to-latest'
+  - '$_SERVICE_NAME'
+  - '--region'
+  - '$_GCP_REGION'
+  - '--platform'
+  - 'managed'
+images:
+- 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:$SHORT_SHA'

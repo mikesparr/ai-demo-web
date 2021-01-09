@@ -1,4 +1,13 @@
-import { Skeleton, Table, TableCaption, Thead, Tbody, Th, Tr, Td } from "@chakra-ui/react"
+import { 
+  Skeleton, 
+  Table, 
+  TableCaption, 
+  Thead, 
+  Tbody, 
+  Th, 
+  Tr, 
+  Td 
+} from "@chakra-ui/react"
 
 const JobsTable = (props) => {
 
