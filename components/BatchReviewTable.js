@@ -20,13 +20,14 @@ const BatchReviewTable = (props) => {
 
   // get actual values from training data
   const getActualValue = (id) => {
-    let val = ''
-    trainingData.map((row) => {
-      if (row.id == id) {
-        val = row.class == 1 ? 'real' : 'fake'
-      }
+    const foundRecord = trainingData.some((row) => {
+      return row.id == id
     })
-    return val
+
+    if (foundRecord) {
+      return foundRecord.class == 1 ? 'real' : 'fake'
+    }
+    return 'unknown'
   }
 
   if (data && data.predictions) {
