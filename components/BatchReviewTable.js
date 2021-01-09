@@ -15,7 +15,6 @@ import { trainingData } from "../lib/batch"
 const BatchReviewTable = (props) => {
 
   const { data } = props
-  let predictionCount = 0
   const tableRows = []
 
   // get actual values from training data
@@ -31,7 +30,6 @@ const BatchReviewTable = (props) => {
   }
 
   if (data && data.predictions) {
-    predictionCount = data.predictions.length;
     data.predictions.map((prediction, index) => {
       if (prediction) {
         const actual = getActualValue(data.subjects[index])

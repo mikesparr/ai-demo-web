@@ -26,7 +26,7 @@ const BatchReviewDrawer = (props) => {
     corrections.push(subjectId)
   }
 
-  const getCorrectedBatch = (batch, corrections) => {
+  const getCorrectedBatch = (batch, corr) => {
     const correctedBatch = {
       batch_id: batch.batch_id,
       subjects: batch.subjects,
@@ -36,7 +36,7 @@ const BatchReviewDrawer = (props) => {
     // loop through subjects and correct prediction values as necessary
     batch.subjects.map((subject, index) => {
       let isCorrect = 1 // default
-      if (corrections.includes(subject)) {
+      if (corr.includes(subject)) {
         isCorrect = 0
         console.log("Corrected subject", subject)
       }

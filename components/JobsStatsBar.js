@@ -31,6 +31,7 @@ const JobsStatsBar = (props) => {
       values.push(job.accuracy * 100)
     });
   }
+  const sortedValues = [...values].reverse()
 
   const latestJob = data && data.jobs && data.jobs.length > 0 ? data.jobs[0] : {
     accuracy: 0.0
@@ -50,7 +51,7 @@ const JobsStatsBar = (props) => {
         borderWidth: 1,
         hoverBackgroundColor: 'rgba(255,99,132,0.4)',
         hoverBorderColor: 'rgba(255,99,132,1)',
-        data: values.reverse()
+        data: sortedValues
       }
     ]
   };

@@ -7,8 +7,8 @@ const width = "1100px"
 
 export default function Layout({ children, page, error }) {
 
-  const alert = (error) => {
-    if (error) return (
+  const alert = (err) => {
+    if (err) return (
       <Alert status="error">
         <AlertIcon />
         There was an error processing your request

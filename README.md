@@ -1,4 +1,5 @@
-# AI Demo (Web Interface)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mikesparr_ai-demo-web&metric=alert_status)](https://sonarcloud.io/dashboard?id=mikesparr_ai-demo-web)
+
 This is a demo app illustrating how to build a custom machine learning pipeline. It consists of 
 this web interface built using NextJS/React and ChartsJS, plus two APIs using Golang and Cloud Run, 
 and backend processors using Python and Cloud Functions.

@@ -1,5 +1,5 @@
 import { Skeleton } from "@chakra-ui/react"
-import { Bar, Line } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 
 const JobsChart = (props) => {
 
@@ -22,6 +22,7 @@ const JobsChart = (props) => {
       values.push(job.accuracy * 100.0)
     });
   }
+  const sortedValues = [...values].reverse()
 
   const chartData = {
     labels,
@@ -33,7 +34,7 @@ const JobsChart = (props) => {
         borderWidth: 1,
         hoverBackgroundColor: 'rgba(255,99,132,0.4)',
         hoverBorderColor: 'rgba(255,99,132,1)',
-        data: values.reverse()
+        data: sortedValues
       }
     ]
   };

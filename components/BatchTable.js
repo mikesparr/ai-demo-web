@@ -16,13 +16,11 @@ const BatchTable = (props) => {
   const { data } = props
 
   // get stats (yes redundant for this demo)
-  let batchCount = 0;
   let predictionCount = 0;
   let realCount = 0;
   let tableRows = [];
 
   if (data && data.batches) {
-    batchCount = data.batches.length;
     data.batches.map(({batch_id, subjects, predictions, created}) => {
       if (predictions && predictions.length) {
         const batch = {batch_id, subjects, predictions, created}

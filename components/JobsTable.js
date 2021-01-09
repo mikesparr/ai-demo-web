@@ -14,14 +14,10 @@ const JobsTable = (props) => {
   const { data } = props
 
   // get stats (yes redundant for this demo)
-  let jobCount = 0;
-  let values = [];
   let tableRows = [];
 
   if (data && data.jobs) {
-    jobCount = data.jobs.length;
     data.jobs.map((job, i) => {
-      values.push(job.accuracy * 100)
       tableRows.push(
         <Tr key={job.job_id}>
           <Td>{new Date(job.created + 'Z').toLocaleString("en-US")}</Td>
