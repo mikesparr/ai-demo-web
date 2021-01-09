@@ -1,8 +1,8 @@
 import { SWRConfig } from "swr"
 import { ChakraProvider } from "@chakra-ui/react"
-import customTheme from '../styles/theme'
+import customTheme from '../styles/custom-theme'
 
-function MyApp({ Component, pageProps }) {
+function App({ Component, pageProps }) {
   return (
     <SWRConfig
       value={{
@@ -17,4 +17,4 @@ function MyApp({ Component, pageProps }) {
   )
 }
 
-export default MyApp
+export default App
