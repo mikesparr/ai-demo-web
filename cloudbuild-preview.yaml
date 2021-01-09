@@ -12,6 +12,7 @@ steps:
   name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
   args:
+  - 'beta'
   - 'run'
   - 'deploy'
   - '$_SERVICE_NAME'
@@ -24,7 +25,7 @@ steps:
   - '--tag'
   - 'pr-${_PR_NUMBER}'
   - '--no-traffic'
-  - '--update-env-vars=NEXT_PUBLIC_PREDICT_URL=$_PREDICT_API_URL,NEXT_PUBLIC_PREDICT_KEY=$_PREDICT_API_KEY,NEXT_PUBLIC_INGEST_URL=$_INGEST_API_URL,NEXT_PUBLIC_INGEST_URL=$_INGEST_API_URL'
+  - '--update-env-vars=NEXT_PUBLIC_PREDICT_URL=$_PREDICT_API_URL,NEXT_PUBLIC_PREDICT_KEY=$_PREDICT_API_KEY,NEXT_PUBLIC_INGEST_URL=$_INGEST_API_URL,NEXT_PUBLIC_INGEST_KEY=$_INGEST_API_KEY'
 - id: "link revision on pull request"
   name: "gcr.io/$PROJECT_ID/deployment-previews"
   args:
@@ -40,6 +41,6 @@ steps:
   - '--repo-name'
   - '$_GITHUB_REPO'
   - '--commit-sha'
-  - '$_SHORT_SHA'
+  - '$SHORT_SHA'
 substitutions:
   _GITHUB_REPO: $(pull_request.pull_request.head.repo.full_name)

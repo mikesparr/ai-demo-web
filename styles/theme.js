@@ -2,7 +2,7 @@ import { extendTheme } from '@chakra-ui/react'
 
 const fontWeights = {
     normal: 300,
-    medium: 600,
+    medium: 500,
     bold: 800,
 }
 

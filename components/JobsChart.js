@@ -1,5 +1,5 @@
 import { Skeleton } from "@chakra-ui/react"
-import {Bar, Line} from 'react-chartjs-2';
+import { Bar, Line } from 'react-chartjs-2';
 
 const JobsChart = (props) => {
 
