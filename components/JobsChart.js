@@ -7,14 +7,12 @@ const JobsChart = (props) => {
   const { data } = props
 
   // get stats (yes redundant for this demo)
-  let jobCount = 0;
   let recordCount = 0;
   let accuracy = 0.0;
   let labels = [];
   let values = [];
 
   if (data && data.jobs) {
-    jobCount = data.jobs.length;
     data.jobs.map((job, i) => {
       accuracy = accuracy == 0.0 ? job.accuracy : accuracy;
       recordCount = recordCount == 0 ? job.records : recordCount;
