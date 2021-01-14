@@ -9,4 +9,4 @@ module.exports = {
     predictKey: process.env.NEXT_PUBLIC_PREDICT_KEY,
     ingestKey: process.env.NEXT_PUBLIC_INGEST_KEY,
   },
-}
+};

@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable react/react-in-jsx-scope */
 import PropTypes from 'prop-types';
 import {Skeleton} from '@chakra-ui/react';
 import {
@@ -21,7 +23,7 @@ const BatchStatsBar = (props) => {
 
   if (data && data.batches) {
     batchCount = data.batches.length;
-    data.batches.map(({batch_id, subjects, predictions}) => {
+    data.batches.map(({predictions}) => {
       if (predictions && predictions.length) {
         predictionCount += predictions.length;
         // loop through predictions and increment 'real' and 'fake' counts
@@ -42,7 +44,7 @@ const BatchStatsBar = (props) => {
       data: [realCount, predictionCount - realCount],
     }],
 
-    // These labels appear in the legend and in the tooltips when hovering different arcs
+    // These labels appear in the legend and in the tooltips when hovering
     labels: [
       'Real',
       'Fake',
@@ -103,6 +105,11 @@ const BatchStatsBar = (props) => {
       </StatGroup>
     </Skeleton>
   );
+};
+
+BatchStatsBar.propTypes = {
+  data: PropTypes.object.isRequired,
+  children: PropTypes.func.isRequired,
 };
 
 export default BatchStatsBar;

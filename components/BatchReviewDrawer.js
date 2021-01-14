@@ -77,20 +77,30 @@ const BatchReviewDrawer = (props) => {
             <DrawerHeader>Review batch</DrawerHeader>
 
             <DrawerBody>
-              <BatchReviewTable data={data} correctionHandler={addToCorrections} />
+              <BatchReviewTable
+                data={data}
+                correctionHandler={addToCorrections}
+              />
             </DrawerBody>
 
             <DrawerFooter>
               <Button variant="outline" mr={3} onClick={onClose}>
                 Cancel
               </Button>
-              <Button color="blue" onClick={() => handleSubmit(onClose)}>Save</Button>
+              <Button color="blue" onClick={() => handleSubmit(onClose)}>
+                Save
+              </Button>
             </DrawerFooter>
           </DrawerContent>
         </DrawerOverlay>
       </Drawer>
     </>
   );
+};
+
+BatchReviewDrawer.propTypes = {
+  data: PropTypes.object.isRequired,
+  submitHandler: PropTypes.func.isRequired,
 };
 
 export default BatchReviewDrawer;
