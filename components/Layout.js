@@ -54,7 +54,7 @@ const Layout = ({children, page, error}) => {
 };
 
 Layout.propTypes = {
-  children: PropTypes.func.isRequired,
+  children: PropTypes.func,
   page: PropTypes.string.isRequired,
   error: PropTypes.object,
 };

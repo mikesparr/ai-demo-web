@@ -101,7 +101,7 @@ const LatestJobBox = (props) => {
 };
 
 LatestJobBox.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.object,
 };
 
 export default LatestJobBox;

@@ -56,7 +56,7 @@ const JobsTable = (props) => {
 };
 
 JobsTable.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.object,
 };
 
 export default JobsTable;

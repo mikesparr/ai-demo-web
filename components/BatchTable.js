@@ -74,7 +74,7 @@ const BatchTable = (props) => {
 };
 
 BatchTable.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.object,
   submitHandler: PropTypes.func.isRequired,
 };
 

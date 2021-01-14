@@ -48,7 +48,7 @@ const Footer = (props) => {
 };
 
 Footer.propTypes = {
-  width: PropTypes.number.isRequired,
+  width: PropTypes.string.isRequired,
   page: PropTypes.string.isRequired,
 };
 

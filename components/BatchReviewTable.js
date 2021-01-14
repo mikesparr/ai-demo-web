@@ -89,7 +89,7 @@ const BatchReviewTable = (props) => {
 };
 
 BatchReviewTable.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.object,
   correctionHandler: PropTypes.func.isRequired,
 };
 

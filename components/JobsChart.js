@@ -57,7 +57,7 @@ const JobsChart = (props) => {
 };
 
 JobsChart.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.object,
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
 };

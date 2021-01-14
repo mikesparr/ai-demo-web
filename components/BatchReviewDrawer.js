@@ -99,7 +99,7 @@ const BatchReviewDrawer = (props) => {
 };
 
 BatchReviewDrawer.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.object,
   submitHandler: PropTypes.func.isRequired,
 };
 

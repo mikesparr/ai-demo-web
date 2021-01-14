@@ -97,7 +97,7 @@ const JobsStatsBar = (props) => {
 };
 
 JobsStatsBar.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.object,
 };
 
 export default JobsStatsBar;

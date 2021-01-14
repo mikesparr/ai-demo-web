@@ -108,8 +108,8 @@ const BatchStatsBar = (props) => {
 };
 
 BatchStatsBar.propTypes = {
-  data: PropTypes.object.isRequired,
-  children: PropTypes.func.isRequired,
+  data: PropTypes.object,
+  children: PropTypes.object,
 };
 
 export default BatchStatsBar;
