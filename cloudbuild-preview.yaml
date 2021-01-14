@@ -1,4 +1,13 @@
 steps:
+# Install app for testing
+- id: 'install'
+  name: 'gcr.io/cloud-builders/npm'
+  args: ['install']
+# Run linter
+- id: 'lint'
+  name: 'gcr.io/cloud-builders/npm'
+  args: ['run', 'lint']
+# Run tests: TODO
 # Build the container image
 - id: "build image"
   name: 'gcr.io/cloud-builders/docker'
