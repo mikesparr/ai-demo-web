@@ -9,7 +9,7 @@ steps:
     name: 'gcr.io/cloud-builders/npm'
     args: ['run', 'lint']
 
-  # Run tests: TODO
+  # Run tests: TODO!
 
   # Build the container image
   - id: "build image"
