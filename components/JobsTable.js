@@ -1,33 +1,35 @@
-import { 
-  Skeleton, 
-  Table, 
-  TableCaption, 
-  Thead, 
-  Tbody, 
-  Th, 
-  Tr, 
-  Td 
-} from "@chakra-ui/react"
+/* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable max-len */
+import PropTypes from 'prop-types';
+import {
+  Skeleton,
+  Table,
+  TableCaption,
+  Thead,
+  Tbody,
+  Th,
+  Tr,
+  Td,
+} from '@chakra-ui/react';
 
 const JobsTable = (props) => {
-
-  const { data } = props
+  const {data} = props;
 
   // get stats (yes redundant for this demo)
-  let tableRows = [];
+  const tableRows = [];
 
   if (data && data.jobs) {
     data.jobs.map((job, i) => {
       tableRows.push(
-        <Tr key={job.job_id}>
-          <Td>{new Date(job.created + 'Z').toLocaleString("en-US")}</Td>
-          <Td isNumeric>{new Intl.NumberFormat().format(job.records)}</Td>
-          <Td isNumeric>{new Intl.NumberFormat().format(job.data_prep_time)}</Td>
-          <Td isNumeric>{new Intl.NumberFormat().format(job.training_time)}</Td>
-          <Td isNumeric>{new Intl.NumberFormat().format(job.testing_time)}</Td>
-          <Td isNumeric>{new Intl.NumberFormat().format(job.accuracy * 100.0)}</Td>
-        </Tr>
-      )
+          <Tr key={job.job_id}>
+            <Td>{new Date(job.created + 'Z').toLocaleString('en-US')}</Td>
+            <Td isNumeric>{new Intl.NumberFormat().format(job.records)}</Td>
+            <Td isNumeric>{new Intl.NumberFormat().format(job.data_prep_time)}</Td>
+            <Td isNumeric>{new Intl.NumberFormat().format(job.training_time)}</Td>
+            <Td isNumeric>{new Intl.NumberFormat().format(job.testing_time)}</Td>
+            <Td isNumeric>{new Intl.NumberFormat().format(job.accuracy * 100.0)}</Td>
+          </Tr>,
+      );
     });
   }
 
@@ -46,11 +48,15 @@ const JobsTable = (props) => {
           </Tr>
         </Thead>
         <Tbody>
-        {tableRows}
+          {tableRows}
         </Tbody>
       </Table>
     </Skeleton>
-  )
-}
+  );
+};
 
-export default JobsTable
+JobsTable.propTypes = {
+  data: PropTypes.object.isRequired,
+};
+
+export default JobsTable;

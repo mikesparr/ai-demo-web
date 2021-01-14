@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Box, Heading, Text } from '@chakra-ui/react'
 
 const Feature = ( {title, desc, ...rest } ) => {

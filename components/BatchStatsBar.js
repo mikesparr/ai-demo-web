@@ -1,18 +1,18 @@
-import { Skeleton } from "@chakra-ui/react"
-import { 
-  StatGroup, 
-  Stat, 
-  StatLabel, 
-  StatHelpText, 
-  StatNumber 
-} from '@chakra-ui/react'
-import { Doughnut } from 'react-chartjs-2';
+import PropTypes from 'prop-types';
+import {Skeleton} from '@chakra-ui/react';
+import {
+  StatGroup,
+  Stat,
+  StatLabel,
+  StatHelpText,
+  StatNumber,
+} from '@chakra-ui/react';
+import {Doughnut} from 'react-chartjs-2';
 
 // pass an error handler function so child can send errors back to parent
 const BatchStatsBar = (props) => {
-
   // fetch remote data
-  const { data } = props;
+  const {data} = props;
 
   // get stats (yes redundant for this demo)
   let batchCount = 0;
@@ -36,74 +36,73 @@ const BatchStatsBar = (props) => {
 
   const chartData = {
     datasets: [{
-      backgroundColor: ["yellowgreen", "#F36F53"],
+      backgroundColor: ['yellowgreen', '#F36F53'],
       borderColor: 'gray',
       borderWidth: 1,
-      data: [realCount, predictionCount - realCount]
+      data: [realCount, predictionCount - realCount],
     }],
 
     // These labels appear in the legend and in the tooltips when hovering different arcs
     labels: [
       'Real',
-      'Fake'
-    ]
+      'Fake',
+    ],
   };
 
   return (
     <Skeleton isLoaded={data}>
-    <StatGroup>
-      <Stat>
-        <StatLabel>Batches</StatLabel>
+      <StatGroup>
+        <Stat>
+          <StatLabel>Batches</StatLabel>
           <StatNumber>{ new Intl.NumberFormat().format(batchCount) }</StatNumber>
-      </Stat>
+        </Stat>
 
-      <Stat>
-        <StatLabel>Predictions</StatLabel>
+        <Stat>
+          <StatLabel>Predictions</StatLabel>
           <StatNumber>{ new Intl.NumberFormat().format(predictionCount) }</StatNumber>
-      </Stat>
+        </Stat>
 
-      <Stat>
-        <StatLabel>Real</StatLabel>
+        <Stat>
+          <StatLabel>Real</StatLabel>
           <StatNumber color="yellowgreen">{ new Intl.NumberFormat().format(realCount) }</StatNumber>
           <StatHelpText>
-          { new Intl.NumberFormat().format((realCount / predictionCount) * 100) }%
+            { new Intl.NumberFormat().format((realCount / predictionCount) * 100) }%
           </StatHelpText>
-      </Stat>
+        </Stat>
 
-      <Stat>
-        <StatLabel>Fake</StatLabel>
+        <Stat>
+          <StatLabel>Fake</StatLabel>
           <StatNumber color="red.300">{ new Intl.NumberFormat().format(predictionCount - realCount) }</StatNumber>
           <StatHelpText>
-          { new Intl.NumberFormat().format(((predictionCount - realCount) / predictionCount) * 100) }%
+            { new Intl.NumberFormat().format(((predictionCount - realCount) / predictionCount) * 100) }%
           </StatHelpText>
-      </Stat>
+        </Stat>
 
-      <Stat>
-        <Doughnut
-          data={chartData}
-          height={80}
-          width={80}
-          options={{
-            legend: false,
-            scales: {
-              xAxes: [{ display: false }]
-            },
-            maintainAspectRatio: false
-          }}
-        />
-      </Stat>
-      
-      {props && props.children &&
+        <Stat>
+          <Doughnut
+            data={chartData}
+            height={80}
+            width={80}
+            options={{
+              legend: false,
+              scales: {
+                xAxes: [{display: false}],
+              },
+              maintainAspectRatio: false,
+            }}
+          />
+        </Stat>
+
+        {props && props.children &&
         <Stat>
           <StatLabel>&nbsp;</StatLabel>
           { props.children }
         </Stat>
-      }
+        }
 
-    </StatGroup>
+      </StatGroup>
     </Skeleton>
-  )
+  );
+};
 
-}
-
-export default BatchStatsBar
+export default BatchStatsBar;

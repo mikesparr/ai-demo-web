@@ -1,4 +1,6 @@
-import { useRef } from "react"
+/* eslint-disable react/react-in-jsx-scope */
+import PropTypes from 'prop-types';
+import {useRef} from 'react';
 import {
   Button,
   Drawer,
@@ -9,53 +11,52 @@ import {
   DrawerContent,
   DrawerCloseButton,
   useDisclosure,
-} from "@chakra-ui/react"
-import { ViewIcon } from "@chakra-ui/icons"
-import BatchReviewTable from "./BatchReviewTable"
+} from '@chakra-ui/react';
+import {ViewIcon} from '@chakra-ui/icons';
+import BatchReviewTable from './BatchReviewTable';
 
 const BatchReviewDrawer = (props) => {
+  const {data, submitHandler} = props;
+  const {isOpen, onOpen, onClose} = useDisclosure();
+  const btnRef = useRef();
 
-  const { data, submitHandler } = props
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const btnRef = useRef()
-
-  const corrections = []
+  const corrections = [];
 
   // corrections (received from review table)
   const addToCorrections = (subjectId) => {
-    corrections.push(subjectId)
-  }
+    corrections.push(subjectId);
+  };
 
   const getCorrectedBatch = (batch, corr) => {
     const correctedBatch = {
       batch_id: batch.batch_id,
       subjects: batch.subjects,
-      ratings: []
-    }
+      ratings: [],
+    };
 
     // loop through subjects and correct prediction values as necessary
     batch.subjects.map((subject, index) => {
-      let isCorrect = 1 // default
+      let isCorrect = 1; // default
       if (corr.includes(subject)) {
-        isCorrect = 0
-        console.log("Corrected subject", subject)
+        isCorrect = 0;
+        console.log('Corrected subject', subject);
       }
-      correctedBatch.ratings.push(isCorrect)
-    })
-    return correctedBatch
-  }
+      correctedBatch.ratings.push(isCorrect);
+    });
+    return correctedBatch;
+  };
 
   const handleSubmit = (close) => {
-    submitHandler(getCorrectedBatch(data, corrections))
-    close()
-  }
+    submitHandler(getCorrectedBatch(data, corrections));
+    close();
+  };
 
   return (
     <>
       <Button
         ref={btnRef}
-        leftIcon={<ViewIcon />} 
-        colorScheme="blue" 
+        leftIcon={<ViewIcon />}
+        colorScheme="blue"
         ml={20}
         size="sm"
         mr={3}
@@ -89,7 +90,7 @@ const BatchReviewDrawer = (props) => {
         </DrawerOverlay>
       </Drawer>
     </>
-  )
-}
+  );
+};
 
-export default BatchReviewDrawer
+export default BatchReviewDrawer;

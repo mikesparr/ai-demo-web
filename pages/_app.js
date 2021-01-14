@@ -1,20 +1,32 @@
-import { SWRConfig } from "swr"
-import { ChakraProvider } from "@chakra-ui/react"
-import customTheme from '../styles/custom-theme'
+/* eslint-disable react/react-in-jsx-scope */
+import PropTypes from 'prop-types';
+import {SWRConfig} from 'swr';
+import {ChakraProvider} from '@chakra-ui/react';
+import customTheme from '../styles/custom-theme';
 
-function App({ Component, pageProps }) {
+/**
+ * Main wrapper for React app
+ * @param {object} props
+ * @return {JSX}
+ */
+const App = ({Component, pageProps}) => {
   return (
     <SWRConfig
       value={{
         refreshInterval: 3000,
-        fetcher: (...args) => fetch(...args).then(res => res.json())
+        fetcher: (...args) => fetch(...args).then((res) => res.json()),
       }}
     >
       <ChakraProvider theme={customTheme}>
         <Component {...pageProps} />
       </ChakraProvider>
     </SWRConfig>
-  )
-}
+  );
+};
 
-export default App
+App.propTypes = {
+  Component: PropTypes.func.isRequired,
+  pageProps: PropTypes.object.isRequired,
+};
+
+export default App;

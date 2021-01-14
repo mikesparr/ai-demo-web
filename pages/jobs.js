@@ -1,25 +1,26 @@
-import getConfig from 'next/config'
-import { 
-  useColorModeValue, 
-  Heading, 
-  Flex, 
-  Box 
-} from '@chakra-ui/react'
-import Layout from "../components/Layout"
-import Feature from "../components/Feature"
-import JobsStatsBar from "../components/JobsStatsBar"
-import JobsTable from '../components/JobsTable'
+/* eslint-disable react/react-in-jsx-scope */
+import PropTypes from 'prop-types';
+import getConfig from 'next/config';
+import {
+  useColorModeValue,
+  Heading,
+  Flex,
+  Box,
+} from '@chakra-ui/react';
+import Layout from '../components/Layout';
+import Feature from '../components/Feature';
+import JobsStatsBar from '../components/JobsStatsBar';
+import JobsTable from '../components/JobsTable';
 
-import useSWR from 'swr'
+import useSWR from 'swr';
 
-const { publicRuntimeConfig } = getConfig()
-const apiUrl = publicRuntimeConfig.predictUrl
-const fetcher = url => fetch(url).then(res => res.json());
+const {publicRuntimeConfig} = getConfig();
+const apiUrl = publicRuntimeConfig.predictUrl;
+const fetcher = (url) => fetch(url).then((res) => res.json());
 
 const Jobs = (props) => {
-
   // fetch remote data
-  const { data: jobs, error } = useSWR(apiUrl + '/jobs', fetcher, props.data);
+  const {data: jobs, error} = useSWR(apiUrl + '/jobs', fetcher, props.data);
 
   return (
     <Layout page="jobs" error={error}>
@@ -30,11 +31,11 @@ const Jobs = (props) => {
         width="100%"
       >
         <Heading
-            as="h1"
-            size="xl"
-            fontWeight="normal"
-            p={5}
-          >Jobs</Heading>
+          as="h1"
+          size="xl"
+          fontWeight="normal"
+          p={5}
+        >Jobs</Heading>
         <Box
           borderWidth="1px"
           borderRadius="lg"
@@ -50,13 +51,14 @@ const Jobs = (props) => {
         p="1.0rem"
         width="100%"
       >
-          <Feature
-            title="Training Jobs"
-            desc="User corrections will trigger model retraining and subsequent batches will use the revised model for predictions."
-            borderRadius={10}
-            width="100%"
-            backgroundColor={useColorModeValue("orange.50", "blue.900")}
-          />
+        <Feature
+          title="Training Jobs"
+          desc={`User corrections will trigger model retraining and subsequent 
+          batches will use the revised model for predictions.`}
+          borderRadius={10}
+          width="100%"
+          backgroundColor={useColorModeValue('orange.50', 'blue.900')}
+        />
       </Flex>
 
       <Flex
@@ -68,17 +70,21 @@ const Jobs = (props) => {
       </Flex>
 
     </Layout>
-  )
-}
+  );
+};
 
 // preload data server side, then useSWR for client-side refreshing
-export async function getServerSideProps() {
+export const getServerSideProps = async () => {
   // fetch data
-  const res = await fetch(apiUrl + '/jobs')
-  const data = await res.json()
+  const res = await fetch(apiUrl + '/jobs');
+  const data = await res.json();
 
   // pass data
-  return { props: { data } }
-}
+  return {props: {data}};
+};
 
-export default Jobs
+Jobs.propTypes = {
+  data: PropTypes.object.isRequired,
+};
+
+export default Jobs;
