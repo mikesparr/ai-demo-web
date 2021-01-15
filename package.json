@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "scan": "retire"
   },
   "dependencies": {
     "@chakra-ui/icons": "^1.0.2",
