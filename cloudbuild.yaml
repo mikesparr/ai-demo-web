@@ -14,7 +14,7 @@ steps:
   # Security scan
   - id: 'security'
   - name: "gcr.io/$PROJECT_ID/sast-scan"
-    args: ['--type', 'nodejs']
+    args: ["--type", "nodejs"]
 
   # Build the container image
   - id: 'build'

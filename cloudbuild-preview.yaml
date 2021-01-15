@@ -14,7 +14,7 @@ steps:
   # Security scan
   - id: 'security'
   - name: "gcr.io/$PROJECT_ID/sast-scan"
-    args: ['--type', 'nodejs']
+    args: ["--type", "nodejs"]
 
   # Build the container image
   - id: 'build image'
@@ -48,7 +48,7 @@ steps:
 
   # Update Github to add link to preview URL
   - id: 'link revision on pull request'
-    name: 'gcr.io/$PROJECT_ID/deployment-previews'
+    name: "gcr.io/$PROJECT_ID/deployment-previews"
     args:
     - 'set'
     - '--project-id'
