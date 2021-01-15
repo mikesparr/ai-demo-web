@@ -11,10 +11,15 @@ steps:
 
   # Run tests: TODO
 
+  # Install security scanner
+  - id: 'install scanner'
+    name: 'gcr.io/cloud-builders/npm'
+    args: ['install -g retire']
+
   # Security scan
-  - id: 'security'
-    name: "gcr.io/$PROJECT_ID/sast-scan"
-    args: ["--type", "nodejs"]
+  - id: 'scan'
+    name: 'bash'
+    args: ["retire"]
 
   # Build the container image
   - id: 'build'
