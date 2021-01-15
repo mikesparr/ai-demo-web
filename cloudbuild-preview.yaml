@@ -14,7 +14,7 @@ steps:
   # Install security scanner
   - id: 'install scanner'
     name: 'gcr.io/cloud-builders/npm'
-    args: ['install -g retire']
+    args: ['i', '-g', 'retire']
 
   # Security scan
   - id: 'scan'
