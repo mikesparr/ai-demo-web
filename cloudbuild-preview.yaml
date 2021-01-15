@@ -12,7 +12,7 @@ steps:
   # Run tests
   - id: 'test'
     name: 'gcr.io/cloud-builders/npm'
-    args: ['run', 'coverage']
+    args: ['run', 'test:coverage']
 
   # Security scan
   - id: 'scan'
