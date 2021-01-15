@@ -11,6 +11,11 @@ steps:
 
   # Run tests: TODO
 
+  # Security scan
+  - id: 'security'
+  - name: 'gcr.io/$PROJECT_ID/sast-scan'
+    args: ["--type", "nodejs"]
+
   # Build the container image
   - id: 'build'
     name: 'gcr.io/cloud-builders/docker'
