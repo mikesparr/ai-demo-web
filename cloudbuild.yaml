@@ -10,7 +10,7 @@ steps:
     args: ['run', 'lint']
 
   # Run tests
-  - id: 'scan'
+  - id: 'test'
     name: 'gcr.io/cloud-builders/npm'
     args: ['run', 'coverage']
 
