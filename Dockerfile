@@ -3,7 +3,7 @@ FROM node:lts-alpine AS deps
 
 WORKDIR /opt/app
 COPY package.json package-lock.json ./
-RUN npm install
+RUN npm install --production
 
 # Rebuild the source code only when needed
 # This is where because may be the case that you would try
