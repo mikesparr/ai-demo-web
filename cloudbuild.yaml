@@ -14,12 +14,12 @@ steps:
   # Install security scanner
   - id: 'install scanner'
     name: 'gcr.io/cloud-builders/npm'
-    args: ['i', '-g', 'retire']
+    args: ['i', 'retire']
 
   # Security scan
   - id: 'scan'
     name: 'bash'
-    args: ["retire"]
+    args: ["node_modules/retire/bin/retire"]
 
   # Build the container image
   - id: 'build'
