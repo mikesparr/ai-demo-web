@@ -1,0 +1,18 @@
+/* eslint-disable react/react-in-jsx-scope */
+import {render, screen} from '@testing-library/react';
+import Home from '../pages/index';
+
+jest.mock('next/config', () => () => ({
+  publicRuntimeConfig: {
+    SOME_VARIABLE_HERE: 'whatever-you-want-here',
+  },
+}));
+
+describe('Home', () => {
+  it('renders without crashing', () => {
+    render(<Home data={{jobs: []}} />);
+    expect(
+        screen.getByRole('navigation', {name: 'AI Demo'}),
+    ).toBeInTheDocument();
+  });
+});

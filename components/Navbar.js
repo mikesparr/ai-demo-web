@@ -44,7 +44,7 @@ const Navbar = (props) => {
 };
 
 Navbar.propTypes = {
-  width: PropTypes.number.isRequired,
+  width: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   page: PropTypes.string.isRequired,
 };

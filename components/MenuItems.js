@@ -18,7 +18,7 @@ const MenuItems = ({children, href, isSelected}) => {
 };
 
 MenuItems.propTypes = {
-  children: PropTypes.func,
+  children: PropTypes.string,
   href: PropTypes.string,
   isSelected: PropTypes.bool,
 };

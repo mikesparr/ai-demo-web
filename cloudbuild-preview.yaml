@@ -9,7 +9,10 @@ steps:
     name: 'gcr.io/cloud-builders/npm'
     args: ['run', 'lint']
 
-  # Run tests: TODO!
+  # Run tests
+  - id: 'scan'
+    name: 'gcr.io/cloud-builders/npm'
+    args: ['run', 'coverage']
 
   # Security scan
   - id: 'scan'
