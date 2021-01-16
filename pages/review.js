@@ -132,7 +132,7 @@ export const getServerSideProps = async () => {
 };
 
 Review.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.object,
 };
 
 export default Review;

@@ -2,6 +2,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 import {act, render, screen} from '@testing-library/react';
 import Jobs from '../pages/jobs';
+import {getServerSideProps} from '../pages/jobs';
 
 jest.mock('next/config', () => () => ({
   publicRuntimeConfig: {
@@ -63,10 +64,30 @@ describe('Jobs', () => {
     ));
 
     // act
-    render(<Jobs data={{jobs: []}} />);
+    render(<Jobs data={undefined} />);
     await act(() => promise);
+    const recordCountNode = screen.getAllByText(/10/i);
+    const accuracyNode = screen.getAllByText(/93/i);
 
     // assert
+    expect(recordCountNode).toBeDefined();
+    expect(accuracyNode).toHaveLength(3);
+    expect(fetch).toHaveBeenCalledTimes(1);
+  });
+
+  it('performs fetch for serverSideProps', async () => {
+    // arrange
+    const response = {
+      job_id: 'job-1',
+      success: true,
+    };
+    fetch.mockResponseOnce(JSON.stringify(response));
+
+    // act
+    const resp = await getServerSideProps();
+
+    // assert
+    expect(resp.props.data.success).toBeTruthy();
     expect(fetch).toHaveBeenCalledTimes(1);
   });
 });

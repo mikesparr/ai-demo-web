@@ -84,7 +84,7 @@ export const getServerSideProps = async () => {
 };
 
 Jobs.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.object,
 };
 
 export default Jobs;
