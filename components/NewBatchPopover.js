@@ -32,6 +32,8 @@ const NewBatchPopover = (props) => {
         <>
           <PopoverTrigger>
             <Button
+              role="button"
+              aria-label="New Batch"
               leftIcon={<AddIcon />}
               colorScheme="blue"
               ml={20}
