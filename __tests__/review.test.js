@@ -45,6 +45,20 @@ describe('Review', () => {
     await act(() => promise);
   });
 
+  it('displays error when API is down', async () => {
+    // arrange
+    const promise = Promise.resolve();
+    fetch.mockResponseOnce(() => Promise.reject(new Error('API is down')));
+
+    // act
+    render(<Review data={undefined} />);
+    await act(() => promise);
+    const errorNode = screen.getByText(/There was an error processing your request/i);
+
+    // assert
+    expect(errorNode).toBeDefined();
+  });
+
   it('displays data from API call', async () => {
     // arrange
     const promise = Promise.resolve();

@@ -147,7 +147,7 @@ export const getServerSideProps = async () => {
 };
 
 Home.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.object,
 };
 
 export default Home;

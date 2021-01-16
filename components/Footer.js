@@ -18,9 +18,8 @@ const Footer = (props) => {
 
       <Flex mr={5}>
         <Text>
-          This is a demo only. See this
-          <Link href="https://github.com/mikesparr/ai-demo-web">Github repo</Link>
-          for details.
+          This is a demo only. See this <Link
+            href="https://github.com/mikesparr/ai-demo-web">Github repo</Link> for details.
         </Text>
       </Flex>
 
