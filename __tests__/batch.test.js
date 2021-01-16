@@ -4,9 +4,6 @@ import {
   submitBatch,
   submitCorrectedBatch,
 } from '../lib/batch';
-import fetchMock from 'jest-fetch-mock';
-
-fetchMock.enableMocks();
 
 describe('lib:batch', () => {
   beforeEach(() => {
