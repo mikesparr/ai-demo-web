@@ -10,6 +10,10 @@ jest.mock('next/config', () => () => ({
 }));
 
 describe('Jobs', () => {
+  beforeEach(() => {
+    fetch.resetMocks();
+  });
+
   it('renders without crashing', async () => {
     // arrange
     const promise = Promise.resolve();
@@ -38,5 +42,31 @@ describe('Jobs', () => {
     expect(screen.getByRole('link', {name: 'Top'})).toBeInTheDocument();
 
     await act(() => promise);
+  });
+
+  it('displays data from API call', async () => {
+    // arrange
+    const promise = Promise.resolve();
+    fetch.mockResponse(JSON.stringify(
+        {
+          jobs: [
+            {
+              job_id: 'job-1',
+              accuracy: 0.93,
+              records: 10,
+              data_prep_time: 0.01,
+              training_time: 0.02,
+              testing_time: 0.03,
+            },
+          ],
+        },
+    ));
+
+    // act
+    render(<Jobs data={{jobs: []}} />);
+    await act(() => promise);
+
+    // assert
+    expect(fetch).toHaveBeenCalledTimes(1);
   });
 });

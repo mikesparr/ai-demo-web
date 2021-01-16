@@ -35,7 +35,7 @@ const BatchReviewDrawer = (props) => {
     };
 
     // loop through subjects and correct prediction values as necessary
-    batch.subjects.map((subject, index) => {
+    batch.subjects.map((subject, _) => {
       let isCorrect = 1; // default
       if (corr.includes(subject)) {
         isCorrect = 0;

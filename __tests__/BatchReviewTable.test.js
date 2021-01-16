@@ -12,4 +12,27 @@ describe('BatchReviewTable', () => {
     // act
     render(<BatchReviewTable {...props} />);
   });
+
+  it('displays expected values', () => {
+    // arrange
+    const props = {
+      correctionHandler: jest.fn(),
+      data: {
+        batch_id: 'xyz',
+        subjects: [
+          'subject-1',
+          'subject-2',
+          'subject-3',
+        ],
+        predictions: [
+          'real',
+          'fake',
+          'real',
+        ],
+      },
+    };
+
+    // act
+    render(<BatchReviewTable {...props} />);
+  });
 });
