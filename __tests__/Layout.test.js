@@ -1,15 +1,15 @@
 /* eslint-disable react/react-in-jsx-scope */
 import {render} from '@testing-library/react';
-import BatchReviewDrawer from '../BatchReviewDrawer';
+import Layout from '../components/Layout';
 
-describe('BatchReviewDrawer', () => {
+describe('Layout', () => {
   it('renders without crashing', () => {
     // arrange
     const props = {
-      submitHandler: jest.fn(),
+      page: 'Home',
     };
 
     // act
-    render(<BatchReviewDrawer {...props} />);
+    render(<Layout {...props} />);
   });
 });

@@ -1,6 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 import {act, render} from '@testing-library/react';
-import NewBatchPopover from '../NewBatchPopover';
+import NewBatchPopover from '../components/NewBatchPopover';
 
 describe('NewBatchPopover', () => {
   it('renders without crashing', async () => {

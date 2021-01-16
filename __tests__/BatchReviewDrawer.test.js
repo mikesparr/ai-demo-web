@@ -1,16 +1,15 @@
 /* eslint-disable react/react-in-jsx-scope */
 import {render} from '@testing-library/react';
-import Feature from '../Feature';
+import BatchReviewDrawer from '../components/BatchReviewDrawer';
 
-describe('Feature', () => {
+describe('BatchReviewDrawer', () => {
   it('renders without crashing', () => {
     // arrange
     const props = {
-      title: 'Title',
-      desc: 'Test text',
+      submitHandler: jest.fn(),
     };
 
     // act
-    render(<Feature {...props} />);
+    render(<BatchReviewDrawer {...props} />);
   });
 });

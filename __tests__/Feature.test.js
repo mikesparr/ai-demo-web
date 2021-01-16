@@ -1,15 +1,16 @@
 /* eslint-disable react/react-in-jsx-scope */
 import {render} from '@testing-library/react';
-import BatchReviewTable from '../BatchReviewTable';
+import Feature from '../components/Feature';
 
-describe('BatchReviewTable', () => {
+describe('Feature', () => {
   it('renders without crashing', () => {
     // arrange
     const props = {
-      correctionHandler: jest.fn(),
+      title: 'Title',
+      desc: 'Test text',
     };
 
     // act
-    render(<BatchReviewTable {...props} />);
+    render(<Feature {...props} />);
   });
 });

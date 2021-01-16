@@ -1,15 +1,15 @@
 /* eslint-disable react/react-in-jsx-scope */
 import {render} from '@testing-library/react';
-import BatchTable from '../BatchTable';
+import BatchReviewTable from '../components/BatchReviewTable';
 
-describe('BatchTable', () => {
+describe('BatchReviewTable', () => {
   it('renders without crashing', () => {
     // arrange
     const props = {
-      submitHandler: jest.fn(),
+      correctionHandler: jest.fn(),
     };
 
     // act
-    render(<BatchTable {...props} />);
+    render(<BatchReviewTable {...props} />);
   });
 });

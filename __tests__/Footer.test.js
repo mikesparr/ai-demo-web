@@ -1,15 +1,16 @@
 /* eslint-disable react/react-in-jsx-scope */
 import {render} from '@testing-library/react';
-import MenuItems from '../MenuItems';
+import Footer from '../components/Footer';
 
-describe('MenuItems', () => {
+describe('Footer', () => {
   it('renders without crashing', () => {
     // arrange
     const props = {
-
+      page: 'Home',
+      width: '100%',
     };
 
     // act
-    render(<MenuItems {...props} />);
+    render(<Footer {...props} />);
   });
 });
