@@ -41,6 +41,11 @@ describe('BatchReviewDrawer', () => {
     const handler = jest.fn();
     const props = {
       submitHandler: handler,
+      data: {
+        batchId: 'batch-1',
+        predictions: ['real'],
+        subjects: ['subject-1'],
+      },
     };
 
     // act

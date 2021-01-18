@@ -29,25 +29,20 @@ const BatchReviewDrawer = (props) => {
 
   const getCorrectedBatch = (batch, corr) => {
     const correctedBatch = {
-      batch_id: null,
-      subjects: [],
+      batch_id: batch.batchId,
+      subjects: batch.subjects,
       ratings: [],
     };
 
-    if (batch && batch.batch_id && batch.subjects) {
-      correctedBatch.batch_id = batch.batch_id;
-      correctedBatch.subjects = batch.subjects;
-
-      // loop through subjects and correct prediction values as necessary
-      batch.subjects.map((subject, _) => {
-        let isCorrect = 1; // default
-        if (corr.includes(subject)) {
-          isCorrect = 0;
-          console.log('Corrected subject', subject);
-        }
-        correctedBatch.ratings.push(isCorrect);
-      });
-    }
+    // loop through subjects and correct prediction values as necessary
+    batch.subjects.map((subject, _) => {
+      let isCorrect = 1; // default
+      if (corr.includes(subject)) {
+        isCorrect = 0;
+        console.log('Corrected subject', subject);
+      }
+      correctedBatch.ratings.push(isCorrect);
+    });
 
     return correctedBatch;
   };
